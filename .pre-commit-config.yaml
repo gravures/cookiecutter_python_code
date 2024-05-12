@@ -34,15 +34,16 @@ repos:
       - id: mixed-line-ending
       #
       - id: check-yaml
-        exclude: ^tests/
+        exclude: ^{{cookiecutter.project_name}}/
       - id: check-json
-        exclude: ^tests/
+        exclude: ^{{cookiecutter.project_name}}/
       - id: check-xml
-        exclude: ^tests/
+        exclude: ^{{cookiecutter.project_name}}/
       - id: check-toml
-        exclude: ^tests/
+        exclude: ^{{cookiecutter.project_name}}/
       # Python
       - id: check-ast
+        exclude: ^{{cookiecutter.project_name}}/
       - id: check-builtin-literals
       - id: check-docstring-first
       - id: debug-statements
