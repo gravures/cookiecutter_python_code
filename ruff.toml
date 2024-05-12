@@ -116,6 +116,7 @@ ignore = [
   "CPY001", # missing copyright
 ]
 "hooks/**.py" = ["INP001", "CPY001"]
+"local_extensions/**.py" = ["INP001", "CPY001"]
 
 [lint.isort]
 lines-after-imports    = 2
