@@ -1,5 +1,5 @@
 {
-    "pythonVersion": "{{ cookiecutter.python | py_vers_minimal('micro') }}",
+    "pythonVersion": "{{ cookiecutter.python | py_vers_minimal('minor') }}",
     "stubPath": "./typings",
     "ignore": [
         "./typings"
