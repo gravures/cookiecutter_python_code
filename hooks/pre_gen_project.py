@@ -24,7 +24,7 @@ PYTHON_VERSION = (
     r"(?:(?:\.)(?P<micro>[0-9]+))?)(?P<pre>(?:a|b|rc|alpha|beta)(?:[-_\.]?[0-9]+)?)?)"
 )
 VERSION_PYTHON_SPECIFIER: Pattern[str] = re.compile(
-    f"^{VERSION_OPERATORS}\\s?{PYTHON_VERSION}(?:,\\s?{PYTHON_VERSION})*$"
+    r"^(~=|==|!=|<=|>=|<|>|===)((([0-9]+)(?:(?:\.)([0-9]+))?(?:(?:\.)([0-9]+))?)((?:a|b|rc|alpha|beta)(?:[-_\.]?[0-9]+)?)?)(,\s*(~=|==|!=|<=|>=|<|>|===)((([0-9]+)(?:(?:\.)([0-9]+))?(?:(?:\.)([0-9]+))?)((?:a|b|rc|alpha|beta)(?:[-_\.]?[0-9]+)?)?))*$"
 )
 
 
