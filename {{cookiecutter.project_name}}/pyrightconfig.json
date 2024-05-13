@@ -1,4 +1,5 @@
 {
+    "pythonVersion": "{{ cookiecutter.python | py_vers_minimal('micro') }}",
     "stubPath": "./typings",
     "ignore": [
         "./typings"
