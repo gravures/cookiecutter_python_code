@@ -13,6 +13,10 @@ VALID_PROJECT: Pattern[str] = re.compile(
     r"^([A-Z0-9]|[A-Z0-9][A-Z0-9- ]*[A-Z0-9])$", re.IGNORECASE
 )
 
+# Repository names must be lower-case letters,
+# numbers, or underscores, but not start with an underscore.
+VALID_REPO: Pattern[str] = re.compile(r"^([a-z0-9]|[a-z0-9][a-z0-9_]*[a-z0-9])$")
+
 # PYTHON VERSION SPECIFICATION
 # FIXME: do not handle 3.* or 3.8.*
 # https://packaging.python.org/en/latest/specifications/version-specifiers/
@@ -39,7 +43,7 @@ def validate_text(text: str, regex: Pattern[str], error_label: str) -> None:
     Raises:
         ValueError: if "text" does not match "regex".
     """
-    if regex.fullmatch(text) is None:
+    if not text or regex.fullmatch(text) is None:
         message = f"The project name {text} is not a valid {error_label}"
         raise ValueError(message)
 
@@ -53,9 +57,15 @@ def main() -> None:
     )
 
     validate_text(
+        text="{{ cookiecutter.repo_name }}",
+        regex=VALID_REPO,
+        error_label="repository name",
+    )
+
+    validate_text(
         text="{{ cookiecutter.python }}",
         regex=VERSION_PYTHON_SPECIFIER,
-        error_label="python version specifiers",
+        error_label="python version specifiers set",
     )
 
 

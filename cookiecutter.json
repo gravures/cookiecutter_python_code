@@ -1,9 +1,11 @@
 {
     "project_name": "",
+    "repo_name": "{{cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_')}}",
     "license": [ "MIT", "Apache-2.0", "GPL-3.0" ],
     "python": ">=3.9",
     "__prompts__": {
         "project_name": "project name",
+        "repo_name": "Validate the git repository name:",
         "python": "python version specifier set",
         "license": "Select project's license:"
     },
