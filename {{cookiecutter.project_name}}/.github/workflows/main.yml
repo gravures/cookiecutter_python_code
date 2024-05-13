@@ -11,14 +11,14 @@ jobs:
       matrix:
         python-version: {{ cookiecutter.python | py_vers_yaml }}
         os: [ubuntu-latest, windows-latest, macos-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{"{{"}} matrix.os {{"}}"}}
 
     steps:
       - uses: actions/checkout@v4
-      - name: Setup pdm to Python ${{ matrix.python-version }}
+      - name: Setup pdm to Python ${{"{{"}} matrix.python-version {{"}}"}}
         uses: pdm-project/setup-pdm@v4
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: ${{"{{"}} matrix.python-version {{"}}"}}
 
       - name: Install dependencies
         run: |
@@ -26,17 +26,17 @@ jobs:
 
       - name: Tests with tox
         env:
-          COVERAGE_FILE: ".coverage.${{ matrix.python-version }}.${{ matrix.os }}"
+          COVERAGE_FILE: ".coverage.${{"{{"}} matrix.python-version {{"}}"}}.${{"{{"}} matrix.os {{"}}"}}"
         run: |
           pdm run tox --version
           pdm run tox --develop -r -e py
 
       - name: Store coverage file
-        if: ${{ matrix.os }} == 'ubuntu-latest'
+        if: ${{"{{"}} matrix.os {{"}}"}} == 'ubuntu-latest'
         uses: actions/upload-artifact@v4
         with:
-          name: coverage-${{ matrix.python-version }}-${{ matrix.os }}
-          path: .coverage.${{ matrix.python-version }}.${{ matrix.os }}
+          name: coverage-${{"{{"}} matrix.python-version {{"}}"}}-${{"{{"}} matrix.os {{"}}"}}
+          path: .coverage.${{"{{"}} matrix.python-version {{"}}"}}.${{"{{"}} matrix.os {{"}}"}}
 
   coverage:
     name: Coverage
@@ -63,7 +63,7 @@ jobs:
         id: coverage_comment
         uses: py-cov-action/python-coverage-comment-action@v3
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{"{{"}} secrets.GITHUB_TOKEN {{"}}"}}
           COVERAGE_DATA_BRANCH: python-coverage
           COMMENT_ARTIFACT_NAME: python-coverage
           COMMENT_FILENAME: python-coverage.txt
