@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Generator, Literal, TypeAlias, cast
+from typing import TYPE_CHECKING, Generator, Literal, TypeAlias
 
 from jinja2.ext import Extension
 from packaging.specifiers import InvalidSpecifier, SpecifierSet
@@ -72,16 +72,15 @@ class PythonVersionExtension(Extension):
             versions: list[str] = list(map(str, list(sp.filter(python_versions("minor")))))
             return str(versions)
 
-        def py_vers_minimal(value: str, **kwargs: str) -> str:
+        def py_vers_minimal(value: str, precision: Schemes) -> str:
             """Returns the minimal supported Python version."""
             sp = create_specifier_set(value)
             if sp is None:
                 return ""
-            precision = cast(Schemes, kwargs.get("precision", "micro"))
             supported = list(sp.filter(python_versions(precision=precision)))
             version = min(supported)
             return str(version)
 
         environment.filters["py_vers_tox"] = py_vers_tox
         environment.filters["py_vers_yaml"] = py_vers_yaml
-        environment.filters["py_vers_minimal"] = py_vers_minimal
+        environment.filters["py_vers_minimal"] = py_vers_minimal  # pyright:ignore[reportArgumentType]
