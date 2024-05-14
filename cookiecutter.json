@@ -1,13 +1,19 @@
 {
     "project_name": "",
     "repo_name": "{{cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_')}}",
-    "license": [ "MIT", "Apache-2.0", "GPL-3.0" ],
+    "author_name": "First Last",
     "python": ">=3.9",
+    "platforms": [ "Any", "Win", "OSX", "Linux", "Win/OSX", "Win/Linux", "OSX/Linux" ],
+    "license": [ "Apache-2.0", "BSD-2-Clause", "GPL-3.0-or-later", "MIT" ],
+    "copyright_year": "{% now 'utc', '%Y' %}",
+    "_extensions": [ "local_extensions.PythonVersionExtension" ],
     "__prompts__": {
         "project_name": "project name",
         "repo_name": "Validate the git repository name:",
+        "author_name": "Author full name:",
         "python": "python version specifier set",
-        "license": "Select project's license:"
-    },
-    "_extensions": [ "local_extensions.PythonVersionExtension" ]
+        "platforms": "Operating system platforms",
+        "license": "Select project's license:",
+        "copyright_year": "Year of the oldest source file"
+    }
 }
