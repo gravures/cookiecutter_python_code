@@ -1,6 +1,6 @@
 {
     "project_name": "",
-    "repo_name": "{{cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_')}}",
+    "repo_name": "{{ cookiecutter.project_name|lower|replace(' ', '_')|replace('-', '_') }}",
     "author_name": "First Last",
     "python": ">=3.9",
     "platforms": [ "Any", "Win", "OSX", "Linux", "Win/OSX", "Win/Linux", "OSX/Linux" ],
